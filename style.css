@@ -1,0 +1,655 @@
+body {
+	background-color: rgba(150, 150, 150, 1.0);
+	
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+
+	-webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+}
+
+hr {
+	margin-top: 5px;
+	margin-bottom: 0;
+}
+
+#background {
+	position: fixed;
+	top: 45%;
+	left: 11%;
+	font-size: 2em;
+	color: rgba(255, 255, 255, 1.0);
+	opacity: 0.05;
+	
+	height: 100%;
+	width: 100%;
+	
+	background-image: url("./../img/crow.png");	
+	background-size: contain;
+	background-color: rgba(0, 0, 0, 0.0);
+	background-repeat: no-repeat;
+	background-position: 10px 10px;
+}
+
+#preload {
+	display: none;
+}
+
+#logo {
+	background-image: url("./../img/logo_white.png");
+	width: 100%;
+	height: 12%;
+	
+	position: fixed;
+	z-index: 2;
+	
+	background-size: contain;
+	background-color: rgba(0, 0, 0, 1.0);
+	background-repeat: no-repeat;
+	background-position: 10px 10px;
+	
+	box-shadow: 0 0 2px 2px rgba( 0, 0, 0, 1.0 );
+	
+	border-bottom: 20px solid;
+	-webkit-border-image: url("./../img/stroke4.png") 0 0 70 80 stretch; /* Safari 3.1-5 */
+	-o-border-image: url("./../img/stroke4.png") 0 0 70 80 stretch; /* Opera 11-12.1 */
+	border-image: url("./../img/stroke4.png") 0 0 70 80 stretch;
+	border-image-outset: 1;
+}
+
+#hierarchy {
+	position: fixed;
+	top: 10%;
+	left: 27%;
+	z-index: 2;
+	
+	font-size: 0.75em;
+	color: rgba( 255, 255, 255, 1.0 );
+}
+
+#recipe_search {
+	position: fixed;
+	top: 15%;
+	left: 5px;
+	min-width: 24%;
+	outline-color: rgba(255, 255, 255, 1.0);
+	z-index: 2;
+}
+
+#crafting-categories {
+	position: absolute;
+	min-width: 25%;
+	top: 20%;
+	z-index: 1;
+}
+
+#recipe_results {
+	position: fixed;
+	width: 25%;
+	height: 100%;
+	padding-top: 10%;
+	padding-left: 5px;
+	z-index: -1;
+	border: none;
+	font-weight: normal;
+	color: rgba(255, 255, 255, 1.0);
+	background-color: rgba(0, 0, 0, 0.95);
+	opacity: 0.0;
+	
+	-webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+}
+
+.ui-accordion .ui-accordion-header {
+	border: 1px;
+	background: rgba(0, 0, 0, 1.0);
+	font-weight: bold;
+	color: rgba(255, 255, 255, 1.0);
+	box-shadow: 0 0 5px 0 rgba( 0, 0, 0, 0.75 );
+}
+
+.ui-accordion .ui-accordion-content {
+	border: none;
+	font-weight: normal;
+	color: rgba(255, 255, 255, 1.0);
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.ui-widget-content {
+	font-weight: normal;
+	color: rgba(255, 255, 255, 1.0);
+}
+
+.ui-state-focus { 
+	outline: none;
+}
+
+.crafting_item {
+	cursor: pointer;
+}
+
+#start_prompt {
+	position: absolute;
+	top: 45%;
+	left: 11%;
+	font-size: 2em;
+	color: rgba(255, 255, 255, 1.0);
+	opacity: 0.25;
+}
+
+#recipe_requirements {
+	margin-top: 10px;
+	
+	padding-left: 10px;	
+	position: fixed;
+	
+	width: 75%;
+	height: 83%;
+	
+	left: 25%;
+	top: 12%;
+	
+	background-color: rgba(255, 255, 255, 0.0);
+	
+	overflow: visible;
+	
+	border-top: 20px solid;
+	border-bottom: 20px solid;
+	-webkit-border-image: url("./../img/stroke3.png") 150 0 150 0 stretch; /* Safari 3.1-5 */
+	-o-border-image: url("./../img/stroke3.png") 150 0 150 0 stretch; /* Opera 11-12.1 */
+	border-image: url("./../img/stroke3.png") 150 0 150 0 stretch;
+}
+
+#tooltip {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	
+	width: 100px;
+	height: 75px;
+	
+	background-color: rgba(0, 0, 0, 0.95);
+	/* background-image: url("./../img/logo_white.png"); */
+	
+	-webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -ms-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+     opacity: 1.0;
+	 display: none;
+	 
+	 transition-delay: 2s;
+	 
+	z-index: 1;
+}
+
+#reset {
+	cursor: pointer;
+	position: absolute;
+	bottom: 0;
+	left: 1%;
+	font-size: 4em;
+	font-weight: bold;
+	
+	transform: rotate(90deg);
+	transition: transform 0.8s;
+	-webkit-transform-origin: 55% 55%;
+	-moz-transform-origin: 55% 55%;
+	-o-transform-origin: 55% 55%;
+	transform-origin: 55% 55%;
+	 
+	z-index: 1;
+}
+
+#reset:hover, #reset:active {
+	-ms-transform: rotate(180deg); /* IE 9 */
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(270deg);
+	transition: transform 0.5s;
+	transition-delay: 0.2s;
+	-webkit-transform-origin: 55% 55%;
+	-moz-transform-origin: 55% 55%;
+	-o-transform-origin: 55% 55%;
+	transform-origin: 55% 55%;
+}
+
+#back {
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	left: 1%;
+	font-size: 6em;
+	font-weight: bold;
+	
+	transform: translate3d( 0, 0, 0 );
+	transition: transform 0.8s;
+	
+	z-index: 1;
+}
+
+#back:hover, #back:active {
+	-ms-transform: translate3d( -10px, 0, 0 ); /* IE 9 */
+    -webkit-transform: translate3d( -10px, 0, 0 ); /* Chrome, Safari, Opera */
+    transform: translate3d( -10px, 0, 0 );
+	transition: transform 0.5s;
+	transition-delay: 0.2s;
+}
+
+#popup {
+	position: absolute;
+	bottom: -4px;
+	left: 20px;
+	width: 100%;
+	height: 101%;
+	background-color: rgba( 0, 0, 0, 1.0 );
+	
+	overflow: visible;
+	
+	-webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -ms-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+     opacity: 0.0;
+
+	 box-shadow: 0 0 2px 2px rgba( 0, 0, 0, 1.0 );
+	 
+	 border-left: 20px solid;
+	-webkit-border-image: url("./../img/stroke3_vert.png") 0 150 40 150 stretch; /* Safari 3.1-5 */
+	-o-border-image: url("./../img/stroke3_vert.png") 0 150 40 150 stretch; /* Opera 11-12.1 */
+	border-image: url("./../img/stroke3_vert.png") 0 150 40 150 stretch;
+	border-image-outset: 1;
+	 
+	 z-index: -1;
+}
+
+#popup_icon {
+	position: relative;
+	
+	height: 120px;
+	width: 120px;
+	background-color: rgba( 0, 0, 0, 0.0 );
+	
+	top: 5%;
+	left: 24%;
+	
+	font-size: 0.75em;
+	overflow: hidden;
+	
+	border: 5px solid;
+	border-radius: 3px;
+	border-color: rgba( 255, 255, 255, 0.8 );
+	
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	
+	opacity: 1.0;
+	
+	-webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+}
+
+#popup_title {
+	position: relative;
+	top: 8%;
+	left: 5%;
+	font-size: 1.5em;
+	font-weight: bold;
+	color: rgba( 255, 255, 255, 1.0 );
+	transition: all .8s;
+	opacity: 1.0;
+}
+
+#popup_content {
+	position: relative;
+	top: 8%;
+	left: 5%;
+	height: 100%;
+	width: 50%;
+	color: rgba( 255, 255, 255, 1.0 );
+	transition: all .8s;
+	opacity: 1.0;
+}
+
+#close_popup {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	font-size: 2.5em;
+	color: rgba( 255, 255, 255, 1.0 );
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+}
+
+#close_popup:hover, #close_popup:active {
+	font-size: 2.7em;
+}
+
+#crafting_circle {
+	position: absolute;
+	top: -5%;
+	
+	height: 200%;
+	width: 200%;
+	
+	background-image: url("./../img/crafting_circle.png");
+	background-size: 500px;
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	
+	-webkit-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -ms-transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+	
+	opacity: 0.0;
+	
+	-webkit-transform: scale(1.0);
+	-moz-transform: scale(1.0);
+	-ms-transform: scale(1.0);
+	-o-transform: scale(1.0);
+	transform: scale(1.0);  
+	-webkit-transform-origin: 0 0;
+	-moz-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	-o-transform-origin: 0 0;
+	transform-origin: 0 0;
+}
+
+#crafting_circle_ready0 {
+	position: absolute;
+	top: -5%;
+	
+	height: 200%;
+	width: 200%;
+	
+	opacity: 0.0;
+	
+	background-image: url("./../img/crafting_circle_ready.png");
+	background-size: 500px;
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	
+	-webkit-transition: opacity 3.0s ease-in-out;
+    -moz-transition: opacity 3.0s ease-in-out;
+    -ms-transition: opacity 3.0s ease-in-out;
+    -o-transition: opacity 3.0s ease-in-out;
+	
+	-webkit-transform: scale(1.0);
+	-moz-transform: scale(1.0);
+	-ms-transform: scale(1.0);
+	-o-transform: scale(1.0);
+	transform: scale(1.0);  
+	-webkit-transform-origin: 0 0;
+	-moz-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	-o-transform-origin: 0 0;
+	transform-origin: 0 0;
+}
+
+#ingredient0, #ingredient1, #ingredient2, #ingredient3, #ingredient4, #ingredient5, #ingredient6, #ingredient7, #ingredient8, #ingredient9, #final_item {
+	height: 60px;
+	width: 60px;
+	background-color: rgba( 0, 0, 0, 0.0 );
+	
+	font-size: 0.75em;
+	overflow: hidden;
+	
+	border: 3px solid;
+	border-color: rgba( 0, 0, 0, 0.0 );
+	
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	
+	color: rgba( 255, 255, 255, 1.0 );
+	text-align: right;
+	text-shadow: -1px 2px rgba( 0, 0, 0, 0.8 );
+	
+	opacity: 0.0;
+	
+	-webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+	
+	/* box-shadow: 0 0 2px 2px rgba( 100, 100, 100, 1.0 ); */
+}
+
+#ingredient0 {
+	position: relative;
+	top: 50px;
+	left: 220px;
+}
+
+#ingredient1 {
+	position: relative;
+	top: 237px;
+	left: 383px;
+}
+
+#ingredient2 {
+	position: relative;
+	top: 178px;
+	left: 56px;
+}
+
+#ingredient3 {
+	position: relative;
+	top: -48px;
+	left: 56px;
+}
+
+#ingredient4 {
+	position: relative;
+	top: -108px;
+	left: 382px;
+}
+
+#ingredient5 {
+	position: relative;
+	top: 80px;
+	left: 220px;
+}
+
+#ingredient6 {
+	position: relative;
+	top: -144px;
+	left: 79px;
+}
+
+#ingredient7 {
+	position: relative;
+	top: -263px;
+	left: 361px;
+}
+
+#ingredient8 {
+	position: relative;
+	top: -104px;
+	left: 87px;
+}
+
+#ingredient9 {
+	position: relative;
+	top: -203px;
+	left: 327px;
+}
+
+#final_item {
+	position: relative;
+	top: -204px;
+	left: 221px;
+	
+	-webkit-transition: all 1.0s ease-in-out;
+    -moz-transition: all 1.0s ease-in-out;
+    -ms-transition: all 1.0s ease-in-out;
+    -o-transition: all 1.0s ease-in-out;
+}
+
+#crafting-container {
+   display: flex;
+   min-height: 100%;
+}
+
+#item, #resources, #statistics, #components {
+	position: absolute;
+	right: 0;
+	z-index: 1;
+	color: rgba( 255, 255, 255, 1.0 );
+	box-shadow: 1px -5px 2px 2px rgba( 0, 0, 0, 1.0 );
+	height: 100%;
+	width: 600px;
+	border-left: 20px solid;
+    transition: all .8s;
+	overflow: visible;
+	padding-left: 20px;
+	opacity: 0.95;
+}
+
+#item {
+	width: 90%;
+	background-color: rgba( 0, 0, 0, 1.0 );
+	transform: translate3d(60%, 0, 0);
+	-webkit-border-image: url("./../img/stroke3_vert.png") 0 150 40 150 stretch; /* Safari 3.1-5 */
+	-o-border-image: url("./../img/stroke3_vert.png") 0 150 40 150 stretch; /* Opera 11-12.1 */
+	border-image: url("./../img/stroke3_vert.png") 0 150 40 150 stretch;
+	border-image-outset: 1;
+}
+
+#statistics {
+	width: 80%;
+	background-color: rgba( 10, 10, 10, 1.0 );
+	
+	transform: translate3d(65%, 0, 0);
+	
+	-webkit-border-image: url("./../img/stroke3_vert_90.png") 0 150 40 150 stretch; /* Safari 3.1-5 */
+	-o-border-image: url("./../img/stroke3_vert_90.png") 0 150 40 150 stretch; /* Opera 11-12.1 */
+	border-image: url("./../img/stroke3_vert_90.png") 0 150 40 150 stretch;
+	border-image-outset: 1;
+}
+
+#components {
+	width: 70%;
+	background-color: rgba( 20, 20, 20, 1.0 );
+	
+	transform: translate3d(73%, 0, 0);
+	
+	-webkit-border-image: url("./../img/stroke3_vert_80.png") 0 150 40 150 stretch; /* Safari 3.1-5 */
+	-o-border-image: url("./../img/stroke3_vert_80.png") 0 150 40 150 stretch; /* Opera 11-12.1 */
+	border-image: url("./../img/stroke3_vert_80.png") 0 150 40 150 stretch;
+	border-image-outset: 1;
+}
+
+#resources {
+	width: 60%;
+	background-color: rgba( 30, 30, 30, 1.0 );
+	
+	transform: translate3d(85%, 0, 0);
+	
+	-webkit-border-image: url("./../img/stroke3_vert_70.png") 0 150 40 150 stretch; /* Safari 3.1-5 */
+	-o-border-image: url("./../img/stroke3_vert_70.png") 0 150 40 150 stretch; /* Opera 11-12.1 */
+	border-image: url("./../img/stroke3_vert_70.png") 0 150 40 150 stretch;
+	border-image-outset: 1;
+}
+
+#item:focus, #resources:focus, #statistics:focus, #components:focus {
+	transform: translate3d(0, 0, 0);
+	transition-delay: 0.3s;
+	outline: none;
+}
+
+#item_details_title, #item_stats_title, #item_components_title, #item_resources_title {
+	font-size: 1.5em;
+	font-weight: bold;
+	color: rgba(255, 255, 255, 1.0);
+}
+
+#options_search {
+	width: 50%;
+	margin-top: 10px;
+	position: absolute;
+	opacity: 0.0;
+	outline-color: rgba(255, 255, 255, 1.0);
+}
+
+.recipe_result {
+	-webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+}
+
+.option_icon {
+	height: 20px;
+}
+
+#current_component_title {
+	position: absolute;
+	bottom: 0;
+	left: 25%;
+	font-size: 1.2em;
+	font-weight: bold;
+	color: rgba(0, 0, 0, 1.0);
+	transition: all .8s;
+	opacity: 0.0;
+}
+
+#child_component_title {
+	position: absolute;
+	bottom: 0;
+	left: 25%;
+	font-size: 1.2em;
+	font-weight: bold;
+	color: rgba(0, 0, 0, 1.0);
+	transition: all .8s;
+	opacity: 0.0;
+}
+
+#item_details {
+	margin-top: 2em;
+	height: 85%;
+	overflow: auto;
+	padding-top: 1em;
+}
+
+#item_stats, #item_components, #item_resources {
+	height: 90%;
+	top: 0;
+	overflow: auto;
+	padding-top: 1em;
+}
+
+.sidebar_label {
+   position: absolute;
+   left: -20px;
+   bottom: -90px;
+   
+   margin: 0;
+   
+   font-size: 1.5em;
+   font-weight: bold;
+   color: rgba(255,255,255,1.0);
+   
+   transition: transform 0.8s;
+   height: 100px;
+   width: 100%;
+   
+   transform: translate3d(0, 0, 0) rotatez(-90deg);
+   transform-origin: 0 0;
+   
+   z-index: -1;
+}
